@@ -121,11 +121,24 @@ def to_assembly(holder):
     return m
 
 
+def print_ready(mesh, flip):
+    """Copy of `mesh` sitting on the bed at the origin. `flip` turns it over
+    about X so the back plate is on the bed and the hinge tabs point up."""
+    m = mesh.copy()
+    if flip:
+        m.apply_transform(trimesh.transformations.rotation_matrix(np.pi, [1, 0, 0]))
+    m.apply_translation(-m.bounds[0])
+    return m
+
+
 def main():
     os.makedirs(os.path.dirname(OUT_CASE), exist_ok=True)
     case, _ = build_case()
     holder = build_holder()
     assert case.is_watertight and holder.is_watertight
+    # Export in print orientation: case back-plate down, holder plate down.
+    case = print_ready(case, flip=True)
+    holder = print_ready(holder, flip=False)
     case.export(OUT_CASE)
     holder.export(OUT_HOLDER)
     print(f"pivot (Y,Z) = ({PIVOT[0]:.3f}, {PIVOT[1]:.3f}); DX={DX:.3f} DY={DY:.3f} DZ={DZ:.3f} edge shift={EDGE_SHIFT:.3f}")

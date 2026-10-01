@@ -48,11 +48,24 @@ case, consider printing just the top strip to check the fit.
 
 ## Printing
 
-- PETG is recommended, as for the Go 2 case. Use extra walls (4+) so the tabs are strong.
-- Case: print with the back plate on the bed. You'll need to flip the STL, because it's
-  exported in the source case's orientation. The tab fins lean less than 25° from vertical,
-  so they need no supports.
-- Holder: print flat, as with the original.
+Both STLs are exported ready to print, so no reorienting is needed:
+
+- Case: back plate on the bed, hinge tabs pointing up. The tab fins lean less than 25° from vertical, so they need no supports.
+- Holder: flat plate on the bed, as with the original.
+
+PETG is recommended, as for the Go 2 case. Use extra walls (4+) so the tabs are strong.
+
+Both parts fit a 250 × 210 mm bed (Prusa MK3S+ size): the case is 206 × 159 × 42 mm and
+the holder 210 × 141 × 20 mm. PrusaSlicer 2.7 estimates on an MK3S+ (0.20 mm QUALITY,
+default 2 walls / 15 % infill, no supports, PLA):
+
+| Part | Time | Filament |
+|---|---|---|
+| Case | ~5 h 50 m | ~68 g |
+| Holder | ~2 h 35 m | ~25 g |
+
+The slicer adds supports under the case's inner screen lips if supports are turned on.
+That brings the case to about 8 h 40 m and 98 g.
 
 ## Hardware
 
